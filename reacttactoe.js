@@ -82,7 +82,8 @@ function Square(props) {
         return 'go to start'
       }
       const turn = move%2 ? 'X': 'O';
-      return `go to move ${move} , ${turn}`; 
+      const result =  `go to move ${move} , ${turn}`; 
+      return result;
     }
     
     render() {
@@ -91,10 +92,14 @@ function Square(props) {
       const winner = calculateWinner(current.squares);
       
       const moves = history.map((step, move) => {
-        //if move = current move then, bold, else if all this stuff
-      const desc = this.getDescription(move)
-      
-       
+        const desc = this.getDescription(move)
+        if (this.state.stepNumber== this.state.history.length-1) {
+          return (
+            <li key={move}> 
+              <button onClick={()=> this.jumpTo(move)}>{desc}</button>
+            </li>
+        )
+        }
         return (
           <li key={move}>
             <button onClick={()=> this.jumpTo(move)}>{desc}</button>
@@ -153,3 +158,4 @@ function Square(props) {
     return null;
   }
   
+  //next step: make a style sheet
