@@ -93,10 +93,10 @@ function Square(props) {
       
       const moves = history.map((step, move) => {
         const desc = this.getDescription(move)
-        if (this.state.stepNumber== this.state.history.length-1) {
+        if (this.state.history[step]== this.state.history.length -1) {
           return (
             <li key={move}> 
-              <button onClick={()=> this.jumpTo(move)}>{desc}</button>
+              <button onClick={()=> this.jumpTo(move)}>poop {desc}</button>
             </li>
         )
         }
