@@ -92,8 +92,10 @@ function Square(props) {
       const winner = calculateWinner(current.squares);
       
       const moves = history.map((step, move) => {
-        const desc = this.getDescription(move)
-        if (this.state.history[step]== this.state.history.length -1) {
+        const desc = this.getDescription(move);
+        console.log('desc = ', desc);
+        console.log('this.state.history = ', this.state.history);
+        if (this.state.history[move]== this.state.history.length -1) {
           return (
             <li key={move}> 
               <button onClick={()=> this.jumpTo(move)}>poop {desc}</button>
