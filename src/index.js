@@ -99,10 +99,11 @@ class Game extends React.Component {
       const desc = this.getDescription(move);
       console.log('desc = ', desc);
       console.log('this.state.history = ', this.state.history);
-      if (this.state.history[move]== this.state.history.length -1) {
+      console.log('this.state.stepNumber: ', this.state.stepNumber);
+      if (this.state.stepNumber === this.state.history.length-1) {
         return (
           <li key={move}> 
-            <button onClick={()=> this.jumpTo(move)}>poop {desc}</button>
+            <button onClick={()=> this.jumpTo(move)} className='move-current'>poop {desc}</button>
           </li>
       )
       }
