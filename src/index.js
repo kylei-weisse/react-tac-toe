@@ -97,9 +97,6 @@ class Game extends React.Component {
     
     const moves = history.map((step, move) => {
       const desc = this.getDescription(move);
-      console.log('desc = ', desc);
-      console.log('this.state.history = ', this.state.history);
-      console.log('this.state.stepNumber: ', this.state.stepNumber);
       if (this.state.stepNumber === move) {
         return (
           <li key={move}> 
