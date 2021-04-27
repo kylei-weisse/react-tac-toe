@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+
 function Square(props) {
   return (
     <button className="square" onClick={props.onClick}>
@@ -46,9 +47,9 @@ class Board extends React.Component {
 }
 
 class Game extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       history: [{
         squares: Array(9).fill(null),
       }],
@@ -56,23 +57,23 @@ class Game extends React.Component {
       xIsNext: true,
     };
   }
- 
-    handleClick(i) {
-        const history = this.state.history.slice(0, this.state.stepNumber + 1);
-        const current = history[history.length - 1];
-        const squares = current.squares.slice();
-        if (calculateWinner(squares) || squares[i]) {
-            return;
-        }
-        squares[i] = this.state.xIsNext ? 'X' : 'O';
-        this.setState({
-            history: history.concat([{
-                squares: squares,
-            }]),
-            stepNumber: history.length,
-            xIsNext: !this.state.xIsNext,
-        });
+
+  handleClick(i) {
+    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const current = history[history.length - 1];
+    const squares = current.squares.slice();
+    if (calculateWinner(squares) || squares[i]) {
+      return;
     }
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    this.setState({
+      history: history.concat([{
+        squares: squares,
+      }]),
+      stepNumber: history.length,
+      xIsNext: !this.state.xIsNext,
+    });
+  }
 
   jumpTo(step) {
     this.setState({
@@ -80,37 +81,37 @@ class Game extends React.Component {
       xIsNext: (step % 2) === 0,
     });
   }
-  
-  getDescription(move) { 
-    if (!move){
+
+  getDescription(move) {
+    if (!move) {
       return 'go to start'
     }
-    const turn = move%2 ? 'X': 'O';
-    const result =  `go to move ${move} , ${turn}`; 
+    const turn = move % 2 ? 'X' : 'O';
+    const result = `go to move ${move} , ${turn}`;
     return result;
   }
-  
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
-    
+
     const moves = history.map((step, move) => {
       const desc = this.getDescription(move);
       if (this.state.stepNumber === move) {
         return (
-          <li key={move}> 
-            <button onClick={()=> this.jumpTo(move)} className='move-current'> {desc}</button>
+          <li key={move}>
+            <button onClick={() => this.jumpTo(move)} className='move-current'> {desc}</button>
           </li>
-      )
+        )
       }
-      return (
+      else return (
         <li key={move}>
-          <button onClick={()=> this.jumpTo(move)}>{desc}</button>
+          <button onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
       )
     });
-    
+
     let status;
     if (winner) {
       status = 'Winner: ' + winner;
@@ -121,7 +122,7 @@ class Game extends React.Component {
     return (
       <div className="game">
         <div className="game-board">
-          <Board 
+          <Board
             squares={current.squares}
             onClick={(i) => this.handleClick(i)}
           />
@@ -165,9 +166,6 @@ function calculateWinner(squares) {
   }
   return null;
 }
-
-//next step: make a style sheet
-
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
