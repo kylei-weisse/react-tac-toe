@@ -23,38 +23,44 @@ class Board extends React.Component {
   }
 
   render() {
-    return (
-      //right now, this hand generates each one. I want to use two loops to do it. 
-      //I think this code would work, if it was in the right place:
-      //   for (i = 0; i < 3; i++) {
-      //     <div className="board-row">
-      //     for (j = 0; j < 3; j++){
-      //         {this.rendersquare(i+j)}
-      //     } 
-      //     </div>
-      // }
-      // It looks like I need to put it in a component, and then call the component.
-      // But I'm not sure how to render that in a useful way.
+      let littleBoxes=[]
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++){
+            littleBoxes.push(this.renderSquare(i+j))
+        } 
+      }
+    console.log(littleBoxes);
+    return(
+      littleBoxes
+    )
 
-      <div>
-        <div className="status">{window.status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
-    );
+    // return (
+    //   /* right now, this hand generates each one. I want to use two loops to do it. 
+    //   I think this code would work, if it was in the right place:
+    //     
+    //   }
+    //   It looks like I need to put it in a component, and then call the component.
+    //   But I'm not sure how to render that in a useful way. */
+
+    //   <div>
+    //     <div className="status">{window.status}</div>
+    //     <div className="board-row">
+    //       {this.renderSquare(0)}
+    //       {this.renderSquare(1)}
+    //       {this.renderSquare(2)}
+    //     </div>
+    //     <div className="board-row">
+    //       {this.renderSquare(3)}
+    //       {this.renderSquare(4)}
+    //       {this.renderSquare(5)}
+    //     </div>
+    //     <div className="board-row">
+    //       {this.renderSquare(6)}
+    //       {this.renderSquare(7)}
+    //       {this.renderSquare(8)}
+    //     </div>
+    //   </div>
+    // );
   }
 }
 
@@ -179,7 +185,5 @@ function calculateWinner(squares) {
   return null;
 }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+//  Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
