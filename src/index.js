@@ -23,15 +23,18 @@ class Board extends React.Component {
   }
 
   render() {
-      let littleBoxes=[]
-      for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++){
-            littleBoxes.push(this.renderSquare(i+j))
-        } 
-      }
-    console.log(littleBoxes);
     return(
-      littleBoxes
+      <>
+        <div className="board-row">
+          {[0, 1, 2].map(index=> this.renderSquare(index))} 
+        </div>
+        <div className="board-row">
+          {[3, 4, 5].map(index=> this.renderSquare(index))} 
+        </div>
+        <div className="board-row">
+          {[6, 7, 8].map(index=> this.renderSquare(index))} 
+        </div>
+      </>
     )
 
     // return (
