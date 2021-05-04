@@ -36,34 +36,6 @@ class Board extends React.Component {
         </div>
       </>
     )
-
-    // return (
-    //   /* right now, this hand generates each one. I want to use two loops to do it. 
-    //   I think this code would work, if it was in the right place:
-    //     
-    //   }
-    //   It looks like I need to put it in a component, and then call the component.
-    //   But I'm not sure how to render that in a useful way. */
-
-    //   <div>
-    //     <div className="status">{window.status}</div>
-    //     <div className="board-row">
-    //       {this.renderSquare(0)}
-    //       {this.renderSquare(1)}
-    //       {this.renderSquare(2)}
-    //     </div>
-    //     <div className="board-row">
-    //       {this.renderSquare(3)}
-    //       {this.renderSquare(4)}
-    //       {this.renderSquare(5)}
-    //     </div>
-    //     <div className="board-row">
-    //       {this.renderSquare(6)}
-    //       {this.renderSquare(7)}
-    //       {this.renderSquare(8)}
-    //     </div>
-    //   </div>
-    // );
   }
 }
 
