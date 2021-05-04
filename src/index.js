@@ -23,16 +23,16 @@ class Board extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <>
         <div className="board-row">
-          {[0, 1, 2].map(index=> this.renderSquare(index))} 
+          {[0, 1, 2].map(index => this.renderSquare(index))}
         </div>
         <div className="board-row">
-          {[3, 4, 5].map(index=> this.renderSquare(index))} 
+          {[3, 4, 5].map(index => this.renderSquare(index))}
         </div>
         <div className="board-row">
-          {[6, 7, 8].map(index=> this.renderSquare(index))} 
+          {[6, 7, 8].map(index => this.renderSquare(index))}
         </div>
       </>
     )
