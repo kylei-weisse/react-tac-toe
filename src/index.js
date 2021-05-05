@@ -109,6 +109,7 @@ class Game extends React.Component {
     if (winner) {
       status = 'Winner: ' + winner;
     } else {
+      //to do: if no winner, IE if board is full with no winner, display a message about there not being a winner.
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
@@ -141,6 +142,7 @@ ReactDOM.render(
 
 
 function calculateWinner(squares) {
+  //to do, maybe not here: highlight winner
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
