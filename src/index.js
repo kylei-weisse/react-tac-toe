@@ -23,47 +23,19 @@ class Board extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <>
         <div className="board-row">
-          {[0, 1, 2].map(index=> this.renderSquare(index))} 
+          {[0, 1, 2].map(index => this.renderSquare(index))}
         </div>
         <div className="board-row">
-          {[3, 4, 5].map(index=> this.renderSquare(index))} 
+          {[3, 4, 5].map(index => this.renderSquare(index))}
         </div>
         <div className="board-row">
-          {[6, 7, 8].map(index=> this.renderSquare(index))} 
+          {[6, 7, 8].map(index => this.renderSquare(index))}
         </div>
       </>
     )
-
-    // return (
-    //   /* right now, this hand generates each one. I want to use two loops to do it. 
-    //   I think this code would work, if it was in the right place:
-    //     
-    //   }
-    //   It looks like I need to put it in a component, and then call the component.
-    //   But I'm not sure how to render that in a useful way. */
-
-    //   <div>
-    //     <div className="status">{window.status}</div>
-    //     <div className="board-row">
-    //       {this.renderSquare(0)}
-    //       {this.renderSquare(1)}
-    //       {this.renderSquare(2)}
-    //     </div>
-    //     <div className="board-row">
-    //       {this.renderSquare(3)}
-    //       {this.renderSquare(4)}
-    //       {this.renderSquare(5)}
-    //     </div>
-    //     <div className="board-row">
-    //       {this.renderSquare(6)}
-    //       {this.renderSquare(7)}
-    //       {this.renderSquare(8)}
-    //     </div>
-    //   </div>
-    // );
   }
 }
 
@@ -137,7 +109,8 @@ class Game extends React.Component {
     let totalMoves = 0;
     if (winner) {
       status = 'Winner: ' + winner;
-    } else if (totalMoves <=8 ){
+    } else if (totalMoves <= 8) {
+      //to do: if no winner, IE if board is full with no winner, display a message about there not being a winner.
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
       ++totalMoves;
       console.log(totalMoves);
@@ -174,6 +147,7 @@ ReactDOM.render(
 
 
 function calculateWinner(squares) {
+  //to do, maybe not here: highlight winner
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
