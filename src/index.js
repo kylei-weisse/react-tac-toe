@@ -134,10 +134,15 @@ class Game extends React.Component {
     });
 
     let status;
+    let totalMoves = 0;
     if (winner) {
       status = 'Winner: ' + winner;
-    } else {
+    } else if (totalMoves <=8 ){
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      ++totalMoves;
+      console.log(totalMoves);
+    } else {
+      status = 'Draw';
     }
 
     return (
