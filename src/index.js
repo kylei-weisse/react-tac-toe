@@ -106,15 +106,14 @@ class Game extends React.Component {
     });
 
     let status;
-    let totalMoves = 0;
+    let moveNumber = 0;
     //check for winner
     if (winner) {
       status = 'Winner: ' + winner;
     //if no winner, check that there's more moves left
-    } else if (totalMoves <= 9) {
+    } else if (moveNumber <= 9) {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-      ++totalMoves;
-      console.log(totalMoves);
+      console.log(moveNumber);
     //draw
     } else {
       status = 'Draw';
