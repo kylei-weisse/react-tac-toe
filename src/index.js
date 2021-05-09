@@ -108,8 +108,8 @@ class Game extends React.Component {
     let status;
     //check for winner
     if (winner) {
-      status = 'Winner: ' + winner;
-      //else, check that there's more moves left
+      status = 'Winner: ' + winner[0];
+      //else, check that there's more moves left.
     } else if (this.state.stepNumber <= 8) {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
       //else, draw
