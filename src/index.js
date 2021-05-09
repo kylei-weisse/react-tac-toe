@@ -112,7 +112,6 @@ class Game extends React.Component {
     //if no winner, check that there's more moves left
     } else if (this.state.stepNumber <= 8) {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-      console.log(this.state.stepNumber);
     //draw
     } else {
       status = 'The Game has Ended in a Draw';
@@ -161,6 +160,7 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      console.log("squares[a]", squares[a])
       return squares[a];
     }
   }
