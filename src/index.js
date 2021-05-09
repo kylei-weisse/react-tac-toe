@@ -109,10 +109,10 @@ class Game extends React.Component {
     //check for winner
     if (winner) {
       status = 'Winner: ' + winner;
-    //if no winner, check that there's more moves left
+      //else, check that there's more moves left
     } else if (this.state.stepNumber <= 8) {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    //draw
+      //else, draw
     } else {
       status = 'The Game has Ended in a Draw';
     }
@@ -146,7 +146,6 @@ ReactDOM.render(
 
 
 function calculateWinner(squares) {
-  //to do: highlight winning squares
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -160,10 +159,11 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     console.log("squares[a]: ", squares[a], "lines[i]: ", lines[i]);
-    if (squares[a] && 
-      squares[a] === squares[b] && 
+    if (squares[a] &&
+      squares[a] === squares[b] &&
       squares[a] === squares[c]) {
-      return squares[a];
+      //returns both winning side and winning squares. As a string though, I think.
+      return squares[a].concat(',', lines[i]);
     }
   }
   return null;
