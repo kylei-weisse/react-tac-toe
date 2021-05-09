@@ -79,7 +79,7 @@ class Game extends React.Component {
     if (!move) {
       return 'go to start'
     }
-    const gfturn = move % 2 ? 'X' : 'O';
+    const turn = move % 2 ? 'X' : 'O';
     const result = `go to move ${move} , ${turn}`;
     return result;
   }
