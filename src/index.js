@@ -87,7 +87,8 @@ class Game extends React.Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const winner = calculateWinner(current.squares);
+    const winObj = calculateWinner(current.squares);
+    const winner = winObj.winner;
 
     const moves = history.map((step, move) => {
       const desc = this.getDescription(move);
@@ -108,7 +109,7 @@ class Game extends React.Component {
     let status;
     //check for winner
     if (winner) {
-      status = 'Winner: ' + winner[0];
+      status = 'Winner: ' + winner;
       //else, check that there's more moves left.
     } else if (this.state.stepNumber <= 8) {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
@@ -163,7 +164,10 @@ function calculateWinner(squares) {
       squares[a] === squares[b] &&
       squares[a] === squares[c]) {
       //returns both winning side and winning squares. As a string though, I think.
-      return squares[a].concat(',', lines[i]);
+      return {
+        winner: squares[a],
+        line: lines[i]
+      }
     }
   }
   return null;
