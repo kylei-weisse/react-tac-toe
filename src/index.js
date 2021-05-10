@@ -162,7 +162,7 @@ function calculateWinner(squares) {
     if (squares[a] &&
       squares[a] === squares[b] &&
       squares[a] === squares[c]) {
-      //returns both winning side and winning squares. As a string though, I think.
+      //returns both winning side and winning squares.
       return squares[a].concat(',', lines[i]);
     }
   }
