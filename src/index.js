@@ -107,6 +107,7 @@ class Game extends React.Component {
 
     let status;
     //check for winner
+    console.log(this.state);
     if (winner) {
       status = 'Winner: ' + winner[0];
       //else, check that there's more moves left.
