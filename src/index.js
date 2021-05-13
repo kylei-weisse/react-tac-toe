@@ -107,7 +107,7 @@ class Game extends React.Component {
 
     let status;
     //check for winner
-    console.log(this.state);
+    console.log(this.state);  
     if (winner) {
       status = 'Winner: ' + winner[0];
       //else, check that there's more moves left.
@@ -162,7 +162,7 @@ function calculateWinner(squares) {
     if (squares[a] &&
       squares[a] === squares[b] &&
       squares[a] === squares[c]) {
-      //returns both winning side and winning squares.
+      //returns both winning side and winning squares in a string.
       return squares[a].concat(',', lines[i]);
     }
   }
