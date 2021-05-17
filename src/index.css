@@ -49,6 +49,11 @@ ol, ul {
   font-size: 75px;
 }
 
+.victory-square {
+  outline: none;
+  font-size: 75px;
+}
+
 .kbd-navigation .square:focus {
   background: #ddd;
 }
