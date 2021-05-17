@@ -23,6 +23,8 @@ class Board extends React.Component {
   }
 
   render() {
+    //move the map outside of the return and change it to a nested for loop, so that I can
+    //check for a winner and bold each renderSquare
     return (
       <>
         <div className="board-row">
