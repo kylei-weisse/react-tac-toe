@@ -58,6 +58,8 @@ class Game extends React.Component {
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
+      //if winner than winner state = winner line
+      //else winner state = null
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
@@ -89,6 +91,7 @@ class Game extends React.Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
+    //don't calculate winner, just render already calculated things
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
@@ -109,7 +112,6 @@ class Game extends React.Component {
 
     let status;
     //check for winner
-    console.log(this.state);  
     if (winner) {
       status = 'Winner: ' + winner[0];
       //else, check that there's more moves left.
