@@ -95,22 +95,23 @@ class Game extends React.Component {
     return result;
   }
 
-  calculateWinner(squares) {
-    //to do: put status in a seperate method from calculateWinner
-    let nStatus;
+  showStatus(){
+    //to do: link the new showStatus component to the rest of the app
+    let status;
     //check for winner
     if (this.state.winner) {
-      nStatus = 'Winner: ' + this.state.winner
+      status = 'Winner: ' + this.state.winner
       //else, check that there's more moves left.
     } else if (this.state.stepNumber <= 8) {
-      nStatus = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
       //else, draw
     } else {
-      nStatus = 'The Game has Ended in a Draw';
+      status = 'The Game has Ended in a Draw';
     }
-    this.setState({
-      status: nStatus
-    })
+    return status;
+  }
+
+  calculateWinner(squares) {
   
     const lines = [
       [0, 1, 2],
