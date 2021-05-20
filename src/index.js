@@ -95,7 +95,7 @@ class Game extends React.Component {
     return result;
   }
 
-  calculateWinner(squares) {f
+  calculateWinner(squares) {
     //to do: put status in a seperate method from calculateWinner
     let calculatedStatus;
     //check for winner
