@@ -97,19 +97,19 @@ class Game extends React.Component {
 
   calculateWinner(squares) {
     //to do: put status in a seperate method from calculateWinner
-    let calculatedStatus;
+    let nStatus;
     //check for winner
     if (this.state.winner) {
-      calculatedStatus = 'Winner: ' + this.state.winner
+      nStatus = 'Winner: ' + this.state.winner
       //else, check that there's more moves left.
     } else if (this.state.stepNumber <= 8) {
-      calculatedStatus = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      nStatus = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
       //else, draw
     } else {
-      calculatedStatus = 'The Game has Ended in a Draw';
+      nStatus = 'The Game has Ended in a Draw';
     }
     this.setState({
-      status: calculatedStatus
+      status: nStatus
     })
   
     const lines = [
