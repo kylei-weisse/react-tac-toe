@@ -60,9 +60,10 @@ class Game extends React.Component {
     const current = history[history.length - 1];
     const squares = current.squares.slice();
 
-    const isAlreadyPopulated = squares[i] != null;
     //this prevents moves being changed, or made after a winner is declared
-    if (calculateWinner(squares) || isAlreadyPopulated) {
+    const isAlreadyPopulated = !!squares[i];
+    const hasWon = calculateWinner(squares);
+    if (hasWon || isAlreadyPopulated) {
       return;
     }
 
