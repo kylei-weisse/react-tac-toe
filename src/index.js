@@ -59,10 +59,13 @@ class Game extends React.Component {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    //if someone has won, or you click on an already populated square, exit method
-    if (calculateWinner(squares) || squares[i]) {
+
+    const isAlreadyPopulated = squares[i] != null;
+    //this prevents moves being changed, or made after a winner is declared
+    if (calculateWinner(squares) || isAlreadyPopulated) {
       return;
     }
+
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
       history: history.concat([{
