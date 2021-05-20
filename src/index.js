@@ -51,7 +51,8 @@ class Game extends React.Component {
       stepNumber: 0,
       xIsNext: true,
       winner: null, 
-      winningLine: null
+      winningLine: null,
+      status: 'First Move'
     };
   }
 
@@ -95,17 +96,20 @@ class Game extends React.Component {
   }
 
   calculateWinner(squares) {
-    let status;
+    let calculatedStatus;
     //check for winner
     if (this.state.winner) {
-      status = 'Winner: ' + this.state.winner;
+      calculatedStatus = 'Winner: ' + this.state.winner
       //else, check that there's more moves left.
     } else if (this.state.stepNumber <= 8) {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      calculatedStatus = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
       //else, draw
     } else {
-      status = 'The Game has Ended in a Draw';
+      calculatedStatus = 'The Game has Ended in a Draw';
     }
+    this.setState({
+      status: calculatedStatus
+    })
   
     const lines = [
       [0, 1, 2],
@@ -124,9 +128,8 @@ class Game extends React.Component {
         squares[a] === squares[c]) {
         //change state to show winner
         this.setState({
-          winningLine: squares[a],
-          //to do: set winner to winning side
-          winner: 'Q'
+          winningLine: lines[a],
+          winner: squares[a]
         })
       }
     }
@@ -165,7 +168,7 @@ class Game extends React.Component {
           />
         </div>
         <div className="game-info">
-          <div>{this.status}</div>
+          <div>{this.state.status}</div>
           <ol>{moves}</ol>
         </div>
       </div>
