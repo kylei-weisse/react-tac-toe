@@ -50,8 +50,9 @@ class Game extends React.Component {
       }],
       stepNumber: 0,
       xIsNext: true,
-      //no winner yet, winner will make array
-      winner: null
+      winner: null, 
+      winningLine: null,
+      status: 'First Move'
     };
   }
 
@@ -60,9 +61,11 @@ class Game extends React.Component {
     const current = history[history.length - 1];
     const squares = current.squares.slice();
 
-    const isAlreadyPopulated = squares[i] != null;
-    //this prevents moves being changed, or made after a winner is declared
-    if (calculateWinner(squares) || isAlreadyPopulated) {
+    //this prevents moves being changed,
+    //and prevents moves being made after a winner is declared
+    const isAlreadyPopulated = !!squares[i];
+    const hasWon = this.calculateWinner(squares);
+    if (hasWon || isAlreadyPopulated) {
       return;
     }
 
@@ -92,11 +95,53 @@ class Game extends React.Component {
     return result;
   }
 
+  showStatus(){
+    //to do: link the new showStatus component to the rest of the app
+    let status;
+    //check for winner
+    if (this.state.winner) {
+      status = 'Winner: ' + this.state.winner
+      //else, check that there's more moves left.
+    } else if (this.state.stepNumber <= 8) {
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      //else, draw
+    } else {
+      status = 'The Game has Ended in a Draw';
+    }
+    return status;
+  }
+
+  calculateWinner(squares) {
+  
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (squares[a] &&
+        squares[a] === squares[b] &&
+        squares[a] === squares[c]) {
+        //change state to show winner
+        this.setState({
+          winningLine: lines[a],
+          winner: squares[a]
+        })
+      }
+    }
+    return null;
+  }
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    //don't calculate winner, just render already calculated things
-    const winner = calculateWinner(current.squares);
+
 
     const moves = history.map((step, move) => {
       const desc = this.getDescription(move);
@@ -114,17 +159,7 @@ class Game extends React.Component {
       )
     });
 
-    let status;
-    //check for winner
-    if (winner) {
-      status = 'Winner: ' + winner[0];
-      //else, check that there's more moves left.
-    } else if (this.state.stepNumber <= 8) {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-      //else, draw
-    } else {
-      status = 'The Game has Ended in a Draw';
-    }
+
 
     return (
       <div className="game">
@@ -135,7 +170,7 @@ class Game extends React.Component {
           />
         </div>
         <div className="game-info">
-          <div>{status}</div>
+          <div>{this.showStatus}</div>
           <ol>{moves}</ol>
         </div>
       </div>
@@ -154,28 +189,7 @@ ReactDOM.render(
 
 
 
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] &&
-      squares[a] === squares[b] &&
-      squares[a] === squares[c]) {
-      //returns both winning side and winning squares in a string.
-      return squares[a].concat(',', lines[i]);
-    }
-  }
-  return null;
-}
+
 
 //  Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
