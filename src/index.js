@@ -1,6 +1,6 @@
 //to do: seperate components into seperate files for easier editing and viewing
 
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -11,6 +11,22 @@ function Square(props) {
       {props.value}
     </button>
   );
+}
+
+function changeStatus(){
+  //to do: link the new showStatus component to the rest of the app
+  let status;
+  //check for winner
+  if (useState.winner) {
+    status = 'Winner: ' + this.state.winner
+    //else, check that there's more moves left.
+  } else if (this.state.stepNumber <= 8) {
+    status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    //else, draw
+  } else {
+    status = 'The Game has Ended in a Draw';
+  }
+  return status;
 }
 
 class Board extends React.Component {
@@ -95,22 +111,6 @@ class Game extends React.Component {
     const turn = move % 2 ? 'X' : 'O';
     const result = `go to move ${move} , ${turn}`;
     return result;
-  }
-
-  showStatus(){
-    //to do: link the new showStatus component to the rest of the app
-    let status;
-    //check for winner
-    if (this.state.winner) {
-      status = 'Winner: ' + this.state.winner
-      //else, check that there's more moves left.
-    } else if (this.state.stepNumber <= 8) {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-      //else, draw
-    } else {
-      status = 'The Game has Ended in a Draw';
-    }
-    return status;
   }
 
   calculateWinner(squares) {
