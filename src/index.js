@@ -1,3 +1,5 @@
+//to do: seperate components into seperate files for easier editing and viewing
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
