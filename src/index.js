@@ -2,9 +2,11 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
+
+import './index.css';
 import changeStatus from './changeStatus';
+import calculateWinner from './calculateWinner';
 
 function Square(props) {
   return (
@@ -13,7 +15,6 @@ function Square(props) {
     </button>
   );
 }
-
 
 class Board extends React.Component {
 
@@ -99,32 +100,7 @@ class Game extends React.Component {
     return result;
   }
 
-  calculateWinner(squares) {
-  
-    const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i];
-      if (squares[a] &&
-        squares[a] === squares[b] &&
-        squares[a] === squares[c]) {
-        //change state to show winner
-        this.setState({
-          winningLine: lines[a],
-          winner: squares[a]
-        })
-      }
-    }
-    return null;
-  }
+
 
   render() {
     const history = this.state.history;
