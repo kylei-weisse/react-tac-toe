@@ -1,9 +1,10 @@
 //to do: seperate components into seperate files for easier editing and viewing
 
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import changeStatus from './changeStatus';
 
 function Square(props) {
   return (
@@ -13,21 +14,6 @@ function Square(props) {
   );
 }
 
-function changeStatus(){
-  //to do: link the new showStatus component to the rest of the app
-  let status;
-  //check for winner
-  if (useState.winner) {
-    status = 'Winner: ' + this.state.winner
-    //else, check that there's more moves left.
-  } else if (this.state.stepNumber <= 8) {
-    status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    //else, draw
-  } else {
-    status = 'The Game has Ended in a Draw';
-  }
-  return status;
-}
 
 class Board extends React.Component {
 
@@ -97,7 +83,7 @@ class Game extends React.Component {
     });
   }
 
-  jumpTo(step) {
+  onHistoryButtonClick(step) {
     this.setState({
       stepNumber: step,
       xIsNext: (step % 2) === 0,
@@ -150,13 +136,13 @@ class Game extends React.Component {
       if (this.state.stepNumber === move) {
         return (
           <li key={move}>
-            <button onClick={() => this.jumpTo(move)} className='move-current'> {desc}</button>
+            <button onClick={() => this.onHistoryButtonClick(move)} className='move-current'> {desc}</button>
           </li>
         )
       }
       else return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button onClick={() => this.onHistoryButtonClick(move)}>{desc}</button>
         </li>
       )
     });
@@ -172,7 +158,7 @@ class Game extends React.Component {
           />
         </div>
         <div className="game-info">
-          <div>{this.state.status}</div>
+          <div>{changeStatus(this.state)}</div>
           <ol>{moves}</ol>
         </div>
       </div>
