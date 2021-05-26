@@ -18,7 +18,6 @@ class Game extends React.Component {
       stepNumber: 0,
       xIsNext: true,
       winner: null, 
-      winningLine: null,
       status: 'First Move'
     };
   }
@@ -34,24 +33,14 @@ class Game extends React.Component {
       [0, 4, 8],
       [2, 4, 6],
     ];
-    console.log('\n\nMove Number:', this.state.stepNumber);
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
-      console.log('a,b,c: ',a,',',b,',',c);
-      console.log('squares[a]:',squares[a]);
-      console.log('squares[b]:',squares[b]);
-      console.log('squares[c]:',squares[c]);
       if (squares[a] &&
         squares[a] === squares[b] &&
         squares[a] === squares[c]) {
-        //change state to show winner
-          console.log('calculateWinner true, squares = ', squares[a]);
-          this.setState((state) => {
-            return {
-              winningLine: [a,b,c],
-              winner: squares[a]
-            }
-          });
+          //return winning side
+          //todo: return an array [winning player, winning spot 1, winning spot 2, winning spot 3]
+          return a;
       }
     }
     return null;
@@ -66,8 +55,7 @@ class Game extends React.Component {
     //this prevents moves being changed,
     //and prevents moves being made after a winner is declared
     const isAlreadyPopulated = !!squares[i];
-    const hasWon = this.calculateWinner(squares);
-    if (hasWon || isAlreadyPopulated) {
+    if (this.state.winner || isAlreadyPopulated) {
       return;
     }
 
