@@ -7,42 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import changeStatus from './changeStatus';
 import calculateWinner from './calculateWinner';
-
-function Square(props) {
-  return (
-    <button className="square" onClick={props.onClick}>
-      {props.value}
-    </button>
-  );
-}
-
-class Board extends React.Component {
-
-  renderSquare(i) {
-    return (
-      <Square
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
-      />
-    );
-  }
-
-  render() {
-    return (
-      <>
-        <div className="board-row">
-          {[0, 1, 2].map(index => this.renderSquare(index))}
-        </div>
-        <div className="board-row">
-          {[3, 4, 5].map(index => this.renderSquare(index))}
-        </div>
-        <div className="board-row">
-          {[6, 7, 8].map(index => this.renderSquare(index))}
-        </div>
-      </>
-    )
-  }
-}
+import Board from './board';
 
 class Game extends React.Component {
   constructor(props) {
