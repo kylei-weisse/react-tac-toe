@@ -24,7 +24,6 @@ class Game extends React.Component {
   }
 
   calculateWinner(squares) {
-  
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -35,16 +34,24 @@ class Game extends React.Component {
       [0, 4, 8],
       [2, 4, 6],
     ];
+    console.log('\n\nMove Number:', this.state.stepNumber);
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
+      console.log('a,b,c: ',a,',',b,',',c);
+      console.log('squares[a]:',squares[a]);
+      console.log('squares[b]:',squares[b]);
+      console.log('squares[c]:',squares[c]);
       if (squares[a] &&
         squares[a] === squares[b] &&
         squares[a] === squares[c]) {
         //change state to show winner
-        this.setState({
-          winningLine: lines[a],
-          winner: squares[a]
-        })
+          console.log('calculateWinner true, squares = ', squares[a]);
+          this.setState((state) => {
+            return {
+              winningLine: lines[a],
+              winner: squares[a]
+            }
+          });
       }
     }
     return null;
