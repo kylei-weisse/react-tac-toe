@@ -28,8 +28,6 @@ class Board extends React.Component {
   }
 
   render() {
-    //I may need to move the map outside of the return and change it to a nested for loop, 
-    //so that I can check for a winner and bold each renderSquare
     return (
       <>
         <div className="board-row">
@@ -69,7 +67,7 @@ class Game extends React.Component {
     //this prevents moves being changed,
     //and prevents moves being made after a winner is declared
     const isAlreadyPopulated = !!squares[i];
-    const hasWon = this.calculateWinner(squares);
+    const hasWon = calculateWinner(squares);
     if (hasWon || isAlreadyPopulated) {
       return;
     }
