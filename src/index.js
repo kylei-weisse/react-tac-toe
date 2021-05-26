@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 
 import './index.css';
 import changeStatus from './changeStatus';
-import calculateWinner from './calculateWinner';
 import Board from './board';
 
 class Game extends React.Component {
@@ -24,6 +23,34 @@ class Game extends React.Component {
     };
   }
 
+  calculateWinner(squares) {
+  
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (squares[a] &&
+        squares[a] === squares[b] &&
+        squares[a] === squares[c]) {
+        //change state to show winner
+        this.setState({
+          winningLine: lines[a],
+          winner: squares[a]
+        })
+      }
+    }
+    return null;
+  }
+
+
   handleClick(i) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
@@ -32,7 +59,7 @@ class Game extends React.Component {
     //this prevents moves being changed,
     //and prevents moves being made after a winner is declared
     const isAlreadyPopulated = !!squares[i];
-    const hasWon = calculateWinner(squares);
+    const hasWon = this.calculateWinner(squares);
     if (hasWon || isAlreadyPopulated) {
       return;
     }
