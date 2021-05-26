@@ -1,6 +1,6 @@
-//get state from Game
-//see what happened
-//set state.status in Game
+//function to display the move/winner status. Note that 
+//this is not a React component, but a simple
+//JS function.
 function changeStatus(state){
     //to do: link the new showStatus component to the rest of the app
     let status;

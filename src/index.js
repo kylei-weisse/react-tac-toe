@@ -48,7 +48,7 @@ class Game extends React.Component {
           console.log('calculateWinner true, squares = ', squares[a]);
           this.setState((state) => {
             return {
-              winningLine: lines[a],
+              winningLine: [a,b,c],
               winner: squares[a]
             }
           });
