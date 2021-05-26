@@ -4,7 +4,7 @@
 function changeStatus(state){
     let status;
     if (state.winner) {
-      status = 'Winner: ' + state.winner;
+      status = 'Winner: ' + state.winner[0];
       //only show next player if there's still moves left to make
     } else if (state.stepNumber <= 8) {
       status = 'Next player: ' + (state.xIsNext ? 'X' : 'O');

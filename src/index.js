@@ -23,7 +23,6 @@ class Game extends React.Component {
   }
 
   calculateWinner(squares) {
-    console.log("calculateWinner running");
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -41,8 +40,7 @@ class Game extends React.Component {
         squares[a] === squares[c]) {
           //return winning side
           //todo: return an array [winning player, winning spot 1, winning spot 2, winning spot 3]
-          console.log(squares[a]);
-          return squares[a];
+          return [squares[a],a,b,c];
       }
     }
     return null;
@@ -61,9 +59,6 @@ class Game extends React.Component {
     }
     //this prevents further moves after a winner
     if (this.calculateWinner(squares)) {
-      this.setState({
-        winner: true
-      })
       return;
     } 
 
@@ -74,8 +69,10 @@ class Game extends React.Component {
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
+      winner: this.calculateWinner(squares)
     });
   }
+
 
   onHistoryButtonClick(step) {
     this.setState({
