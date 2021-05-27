@@ -39,7 +39,7 @@ class Game extends React.Component {
         squares[a] === squares[b] &&
         squares[a] === squares[c]) {
           //return winning side
-          return [squares[a],a,b,c];
+          return ({side: squares[a], moves: [a,b,c]})
       }
     }
     return null;
