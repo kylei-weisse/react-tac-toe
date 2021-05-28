@@ -3,13 +3,13 @@ import Square from './square'
 
 class Board extends React.Component {
     renderSquare(i) {
-      //todo: put bolding behavior here, in renderSquare, and remove
-      //winner prop from Square return
+      //todo: put bolding behavior here
+      const winnerVal=this.props.winnerVal;
       return (
         <Square
           value={this.props.squares[i]}
           onClick={() => this.props.onClick(i)}
-          winner={this.props.winnerVal}
+          className={`${winnerVal ? "victory-square" : "square"}`}
         />
       );
     }
