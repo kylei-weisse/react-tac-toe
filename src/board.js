@@ -3,6 +3,8 @@ import Square from './square'
 
 class Board extends React.Component {
     renderSquare(i) {
+      //todo: put bolding behavior here, in renderSquare, and remove
+      //winner prop from Square return
       return (
         <Square
           value={this.props.squares[i]}
