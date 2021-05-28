@@ -3,8 +3,20 @@ import Square from './square'
 
 class Board extends React.Component {
     renderSquare(i) {
-      //todo: put bolding behavior here
-      const winnerVal=this.props.winnerVal;
+      let winnerVal=null;
+      if (this.props.winnerVal){
+        //put a loop inside this if statement to make
+        //winnerVal truthy, only for the winning statements, which
+        //we are getting from index's state.winner, and so 
+        //they are in Board as this.props.winnerVal.moves,
+        //which is an array. So an example ...Val.moves would be 
+        //[0,4,8]
+        for(let j=0;j<3;j++){
+          
+          winnerVal=true;
+        }
+      }
+
       return (
         <Square
           value={this.props.squares[i]}
