@@ -50,6 +50,18 @@ ol, ul {
 }
 
 .victory-square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 60px;
+  font-weight: 999;
+  line-height: 100px;
+  height: 100px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 100px;
   outline: none;
   font-size: 75px;
 }
