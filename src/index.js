@@ -120,6 +120,7 @@ class Game extends React.Component {
           <Board
             squares={current.squares}
             onClick={(i) => this.handleClick(i)}
+            winnerVal = {this.state.winner}
           />
         </div>
         <div className="game-info">
