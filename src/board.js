@@ -4,7 +4,6 @@ import Square from './square'
 class Board extends React.Component {
     renderSquare(i) {
       let bold=false;
-
       for (let j = 0; j<=2; j++){
         if (this.props.winnerVal[j]===i){
           bold = true;
