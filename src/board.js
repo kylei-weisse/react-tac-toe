@@ -4,14 +4,10 @@ import Square from './square'
 class Board extends React.Component {
     renderSquare(i) {
       let bold=false;
-      console.log("outside of for loop",this.props.winner,",",bold)
 
-      for (let j = 0; j++; j<=2){
-        console.log("inside for loop",this.props.winner,",",bold)
-
-        if (this.props.winnerVal[j]==i){
+      for (let j = 0; j<=2; j++){
+        if (this.props.winnerVal[j]===i){
           bold = true;
-          console.log("inside if statement",this.props.winner,",",bold)
         }
       }
       return (
