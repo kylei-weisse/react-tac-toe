@@ -3,25 +3,23 @@ import Square from './square'
 
 class Board extends React.Component {
     renderSquare(i) {
-      let winnerVal=null;
-      if (this.props.winnerVal){
-        //put a loop inside this if statement to make
-        //winnerVal truthy, only for the winning statements, which
-        //we are getting from index's state.winner, and so 
-        //they are in Board as this.props.winnerVal.moves,
-        //which is an array. So an example ...Val.moves would be 
-        //[0,4,8]
-        for(let j=0;j<3;j++){
-          
-          winnerVal=true;
+      let bold=false;
+      console.log("outside of for loop",this.props.winner,",",bold)
+
+      for (let j = 0; j++; j<=2){
+        console.log("inside for loop",this.props.winner,",",bold)
+
+        if (this.props.winnerVal[j]==i){
+          bold = true;
+          console.log("inside if statement",this.props.winner,",",bold)
         }
       }
-
       return (
         <Square
           value={this.props.squares[i]}
           onClick={() => this.props.onClick(i)}
-          className={`${winnerVal ? "victory-square" : "square"}`}
+          // className={`${i==winnerVal[i] ? "victory-square" : "square"}`}
+          className={`${bold ? "victory-square" : "square"}`}
         />
       );
     }
