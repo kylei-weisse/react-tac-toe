@@ -6,5 +6,5 @@ Then, I gave it some responsive behavior, because I wasn't satisfied with how it
 I'm proud of how it turned out.
 
 
-<br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
